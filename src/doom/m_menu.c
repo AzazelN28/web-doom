@@ -234,20 +234,20 @@ enum
     options,
     loadgame,
     savegame,
+    main_end,
     readthis,
-    quitdoom,
-    main_end
+    quitdoom
 } main_e;
 
-menuitem_t MainMenu[]=
+menuitem_t MainMenu[] =
 {
     {1,"M_NGAME",M_NewGame,'n'},
     {1,"M_OPTION",M_Options,'o'},
     {1,"M_LOADG",M_LoadGame,'l'},
     {1,"M_SAVEG",M_SaveGame,'s'},
     // Another hickup with Special edition.
-    {1,"M_RDTHIS",M_ReadThis,'r'},
-    {1,"M_QUITG",M_QuitDOOM,'q'}
+    // {1,"M_RDTHIS",M_ReadThis,'r'},
+    // {1,"M_QUITG",M_QuitDOOM,'q'}
 };
 
 menu_t  MainDef =
@@ -477,12 +477,12 @@ menu_t  LoadDef =
 //
 menuitem_t SaveMenu[]=
 {
-    {1,"", M_SaveSelect,'1'},
-    {1,"", M_SaveSelect,'2'},
-    {1,"", M_SaveSelect,'3'},
-    {1,"", M_SaveSelect,'4'},
-    {1,"", M_SaveSelect,'5'},
-    {1,"", M_SaveSelect,'6'}
+    {1, "", M_SaveSelect, '1'},
+    {1, "", M_SaveSelect, '2'},
+    {1, "", M_SaveSelect, '3'},
+    {1, "", M_SaveSelect, '4'},
+    {1, "", M_SaveSelect, '5'},
+    {1, "", M_SaveSelect, '6'}
 };
 
 menu_t  SaveDef =
@@ -2085,7 +2085,7 @@ void M_Init (void)
 
     if (gamemode == commercial)
     {
-        MainMenu[readthis] = MainMenu[quitdoom];
+        // MainMenu[readthis] = MainMenu[quitdoom];
         MainDef.numitems--;
         MainDef.y += 8;
         NewDef.prevMenu = &MainDef;

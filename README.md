@@ -24,3 +24,12 @@ Libpng is © 1998-2014 Glenn Randers-Pehrson, © 1996-1997 Andreas Dilger, ©
 Gailly and Mark Adler.
 
 Emscripten is © 2010-2018 Emscripten authors, see [AUTHORS](https://raw.githubusercontent.com/emscripten-core/emscripten/incoming/AUTHORS) file.
+
+# How to compile this
+
+```sh
+# If you want to compile it in "Debug" mode
+emcmake cmake -DCMAKE_BUILD_TYPE=Debug
+emmake make -j12
+```
+

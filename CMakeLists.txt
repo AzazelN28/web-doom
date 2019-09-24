@@ -21,7 +21,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Oz -Wall \
     -s USE_LIBPNG=1 \
     -s ALLOW_MEMORY_GROWTH=1 \
     -s NO_EXIT_RUNTIME=1 \
-    -s EXTRA_EXPORTED_RUNTIME_METHODS=['FS'] \
+    -s EXTRA_EXPORTED_RUNTIME_METHODS=['FS','UTF8ToString'] \
     --no-heap-copy")
 
 if (CMAKE_BUILD_TYPE MATCHES Debug)
@@ -31,11 +31,11 @@ if (CMAKE_BUILD_TYPE MATCHES Debug)
 
   set(CMAKE_C_FLAGS_DEBUG "-s ASSERTIONS=2 --source-map-base http://localhost:8000/ -g4 --preload-file ${CMAKE_CURRENT_LIST_DIR}/../doom1.wad@doom1.wad")
 
-  add_custom_command(TARGET index POST_BUILD
-    WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
-    COMMAND sed -i index.wasm.map 's|${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/||g' index.wasm.map
-    COMMENT "Fix WebAssembly source map root"
-  )
+  #add_custom_command(TARGET index POST_BUILD
+  #  WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+  #  COMMAND sed -i index.wasm.map 's|${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/||g' index.wasm.map
+  #  COMMENT "Fix WebAssembly source map root"
+  #)
 
   em_link_js_library(index ${libraryJsFiles})
 else()

@@ -29,12 +29,12 @@
 int key_right = KEY_RIGHTARROW;
 int key_left = KEY_LEFTARROW;
 
-int key_up = KEY_UPARROW;
-int key_down = KEY_DOWNARROW; 
-int key_strafeleft = ',';
-int key_straferight = '.';
-int key_fire = KEY_RCTRL;
-int key_use = ' ';
+int key_up = 'w'; // KEY_UPARROW;
+int key_down = 's'; // KEY_DOWNARROW; 
+int key_strafeleft = 'a'; // ',';
+int key_straferight = 'd'; // '.';
+int key_fire = 'q'; // KEY_RCTRL;
+int key_use = 'e'; // ' ';
 int key_strafe = KEY_RALT;
 int key_speed = KEY_RSHIFT; 
 
