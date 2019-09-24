@@ -1,8 +1,8 @@
-# WebAssembly DOOM
+# WebDOOM
 
 DOOM® is a registered trademark of ZeniMax Media Inc. in the US and/or
 other countries. Id Software® is a registered trademark of ZeniMax Media
-Inc. in the US and/or other countries. WebAssembly DOOM is in no way affiliated
+Inc. in the US and/or other countries. WebDOOM is in no way affiliated
 with ZeniMax Media Inc. or id Software LLC and is not approved by ZeniMax
 Media Inc. or id Software.
 
@@ -40,6 +40,21 @@ emmake make -j12
 emcmake cmake -DCMAKE_BUILD_TYPE=Release
 emmake make -j12
 ```
+
+# Controls
+
+Using CTRL and ALT are usually bad choices inside a browser because 
+there are a lot of shortcuts that start by using one of those 
+modifiers. So, I've changed the controls to be more browser friendly.
+
+- Q: Fire
+- E: Use
+- WASD: Forward, Strafe Left, Backward, Strafe Right
+- Left Arrow: Turn Left
+- Right Arrow: Turn Right
+- Shift: Run
+- Escape: Exit menu
+- Enter: Select menu item
 
 # Events
 
