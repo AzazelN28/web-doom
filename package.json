@@ -1,7 +1,7 @@
 {
   "name": "wasm-doom",
   "version": "1.0.0",
-  "description": "DOOM® is a registered trademark of ZeniMax Media Inc. in the US and/or other countries. Id Software® is a registered trademark of ZeniMax Media Inc. in the US and/or other countries. WebAssembly DOOM is in no way affiliated with ZeniMax Media Inc. or id Software LLC and is not approved by ZeniMax Media Inc. or id Software.",
+  "description": "DOOM® is a registered trademark of ZeniMax Media Inc. in the US and/or other countries. Id Software® is a registered trademark of ZeniMax Media Inc. in the US and/or other countries. WebDOOM is in no way affiliated with ZeniMax Media Inc. or id Software LLC and is not approved by ZeniMax Media Inc. or id Software.",
   "main": "index.js",
   "scripts": {
     "start": "echo \"Use:\nemcmake cmake -DCMAKE_BUILD_TYPE=Debug\nemmake make -j12\" && exit 0",
@@ -14,8 +14,8 @@
     "url": "git+https://github.com/lazarv/wasm-doom.git"
   },
   "keywords": [],
-  "author": "AzazelN28 <asakon28@gmail.com>",
-  "license": "MIT",
+  "author": "ROJO2 <hola@rojo2.com>",
+  "license": "GPL-2.0",
   "bugs": {
     "url": "https://github.com/lazarv/wasm-doom/issues"
   },
