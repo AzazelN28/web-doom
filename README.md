@@ -14,7 +14,7 @@ Schulze, © 2005-2006 Florian Schulze, Colin Phipps, Neil Stevens, Andrey
 Budko; Chocolate Doom is © 1993-1996 Id Software, Inc., © 2005 Simon
 Howard; Strawberry Doom is © 1993-1996 Id Software, Inc., © 2005 Simon
 Howard, © 2008-2010 GhostlyDeath; Crispy Doom is © 2014-2018 Fabian
-Greffrath.
+Greffrath. WebAssembly DOOM is © 2018-2019 Viktor Lázár.
 
 SDL 2.0, SDL_mixer 2.0 and SDL_net 2.0 are © 1997-2016 Sam Lantinga.
 
