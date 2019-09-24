@@ -6,6 +6,7 @@
   "scripts": {
     "start": "echo \"Use:\nemcmake cmake -DCMAKE_BUILD_TYPE=Debug\nemmake make -j12\" && exit 0",
     "serve": "serve .",
+    "build": "emmake make -j12", 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
