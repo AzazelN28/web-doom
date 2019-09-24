@@ -25,11 +25,41 @@ Gailly and Mark Adler.
 
 Emscripten is © 2010-2018 Emscripten authors, see [AUTHORS](https://raw.githubusercontent.com/emscripten-core/emscripten/incoming/AUTHORS) file.
 
-# How to compile this
+# Building
+
+## Development
 
 ```sh
-# If you want to compile it in "Debug" mode
 emcmake cmake -DCMAKE_BUILD_TYPE=Debug
 emmake make -j12
 ```
 
+## Production
+
+```sh
+emcmake cmake -DCMAKE_BUILD_TYPE=Release
+emmake make -j12
+```
+
+# Events
+
+In the original [wasm-doom](https://github.com/lazarv/wasm-doom) there
+was a series of undocumented JavaScript events, this is a list of that
+events:
+
+- G_DoLoadLevel
+- G_DoCompleted
+- G_SaveGame
+- G_InitNew
+- P_KillMobj
+- V_ScreenShot
+- I_CloseGIF
+- I_Error
+- I_Endoom
+
+# Missing menu items
+
+I've removed certain menu items because I think they don't make any
+sense in a web environment. Those menu items are: Read This! and Quit Game.
+
+Forked & updated with :heart: by [ROJO 2](https://rojo2.com)
