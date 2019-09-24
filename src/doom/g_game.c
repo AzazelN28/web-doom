@@ -1639,6 +1639,13 @@ void R_ExecuteSetViewSize (void);
 
 char	savename[256];
 
+EMSCRIPTEN_KEEPALIVE
+void G_LoadGameDefault()
+{
+    G_LoadGame("doomsave.dsg");
+}
+
+EMSCRIPTEN_KEEPALIVE
 void G_LoadGame (char* name) 
 { 
     M_StringCopy(savename, name, sizeof(savename));
@@ -1691,6 +1698,13 @@ void G_DoLoadGame (void)
     R_FillBackScreen ();   
 } 
  
+EMSCRIPTEN_KEEPALIVE
+void G_SaveGameDefault()
+{
+    savegameslot = -1;
+    M_StringCopy(savedescription, "default", sizeof(savedescription));
+    sendsave = true;
+}
 
 //
 // G_SaveGame
@@ -1715,7 +1729,12 @@ void G_DoSaveGame (void)
 
     recovery_savegame_file = NULL;
     temp_savegame_file = P_TempSaveGameFile();
-    savegame_file = P_SaveGameFile(savegameslot);
+    if (savegameslot < 0) {
+        savegame_file = "doomsave.dsg";
+        savegameslot = 0;
+    } else {
+        savegame_file = P_SaveGameFile(savegameslot);
+    }
 
     // Open the savegame file for writing.  We write to a temporary file
     // and then rename it at the end if it was successfully written.

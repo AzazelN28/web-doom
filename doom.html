@@ -3,9 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Emscripten-Generated Code</title>
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@azazeln28">
+    <meta name="twitter:creator" content="@azazeln28">
+    <!-- Facebook Open Graph -->
+    <meta property="og:url" content="https://azazeln28.neocities.org/games/doom" />
+    <meta property="og:title" content="DOOM" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="https://azazeln28.neocities.org/games/doom" />
+    <link href="https://fonts.googleapis.com/css?family=Teko&display=swap" rel="stylesheet">
+    <title>DOOM</title>
     <style>
       html, body {
+        font-family: 'Teko', sans-serif;
+        font-size: 200%;
         width: 100%;
         height: 100%;
         margin: 0;
@@ -25,7 +37,7 @@
         height: 100vh;
       }
 
-      #spinner-container {
+      #container {
         position: fixed;
         display: flex;
         top: 0;
@@ -35,6 +47,13 @@
         width: 100%;
         height: 100%;
         justify-content: center;
+        align-items: center;
+      }
+
+      #spinner-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
         align-items: center;
       }
 
@@ -49,13 +68,36 @@
         -o-animation: rotation .8s linear infinite;
         animation: rotation 0.8s linear infinite;
 
-        border-left: 5px solid rgb(235, 235, 235);
-        border-right: 5px solid rgb(235, 235, 235);
-        border-bottom: 5px solid rgb(235, 235, 235);
-        border-top: 5px solid rgb(120, 120, 120);
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-top: 5px solid hsl(0,50%,50%);
         
         border-radius: 100%;
-        background-color: rgb(189, 215, 46);
+        background-color:transparent; 
+      }
+
+      #status {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 30px;
+        margin-left: 20px;
+        font-weight: bold;
+        color: hsl(0,50%,50%);
+      }
+
+      #progress {
+        height: 20px;
+        width: 300px;
+      }
+
+      progress::-moz-progress-bar,
+      progress::-webkit-progress-value { 
+        background: hsl(0, 50%, 50%);
+      }
+
+      progress {
+        color: hsl(0, 50%, 50%);
       }
 
       @-webkit-keyframes rotation {
@@ -75,27 +117,16 @@
         to {transform: rotate(360deg);}
       }
 
-      #status {
-        display: inline-block;
-        vertical-align: top;
-        margin-top: 30px;
-        margin-left: 20px;
-        font-weight: bold;
-        color: rgb(120, 120, 120);
-      }
-
-      #progress {
-        height: 20px;
-        width: 300px;
-      }
     </style>
   </head>
   <body>
     <!-- Aquí antes estaba el logo de Emscripten -->
-    <div id="spinner-container">
-      <div id="spinner"></div>
-      <div id="status">Downloading...</div>
-      <progress value="0" max="100" id="progress" hidden="1"></progress>
+    <div id="container">
+      <div id="spinner-container">
+        <div id="spinner"></div>
+        <div id="status">Downloading...</div>
+        <progress value="0" max="100" id="progress" hidden="1"></progress>
+      </div>
     </div>
 
     <!-- 
@@ -121,9 +152,19 @@
       const progressElement = document.getElementById('progress');
       const spinnerElement = document.getElementById('spinner');
 
-      const Module = {
+      document.addEventListener('G_LoadGame', (e) => {
+        console.log(e.detail)
+      })
+      document.addEventListener('G_SaveGame', (e) => {
+        console.log(e.detail)
+      })
+
+      var Module = {
         preRun: [],
         postRun: [],
+        onRuntimeInitialized: function() {
+          console.log('hola')
+        },
         print: (function() {
           const element = document.getElementById('output');
           if (element) element.value = ''; // clear browser cache
@@ -200,7 +241,9 @@
           Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
         }
       };
+
       Module.setStatus('Downloading...');
+
       window.onerror = function(event) {
         // TODO: do not warn on ok events like simulating an infinite loop or exitStatus
         Module.setStatus('Exception thrown, see JavaScript console');
