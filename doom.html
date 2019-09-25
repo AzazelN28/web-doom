@@ -245,6 +245,12 @@
 
       Module.setStatus('Downloading...');
 
+      window.onclick = function(e) {
+        if (Module.SDL2.audioContext.state !== 'running') {
+          Module.SDL2.audioContext.resume()
+        }
+      }
+
       window.onerror = function(event) {
         // TODO: do not warn on ok events like simulating an infinite loop or exitStatus
         Module.setStatus('Exception thrown, see JavaScript console');
