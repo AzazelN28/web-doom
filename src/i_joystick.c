@@ -317,6 +317,18 @@ static int GetAxisState(int axis, int invert)
     return result;
 }
 
+EMSCRIPTEN_KEEPALIVE
+void UpdateJoystick(int data1, int data2, int data3, int data4, int data5) {
+    event_t ev;
+    ev.type = ev_joystick;
+    ev.data1 = data1;
+    ev.data2 = data2;
+    ev.data3 = data3;
+    ev.data4 = data4;
+    ev.data5 = data5;
+    D_PostEvent(&ev);
+}
+
 void I_UpdateJoystick(void)
 {
     if (joystick != NULL)
