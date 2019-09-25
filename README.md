@@ -77,4 +77,4 @@ events:
 I've removed certain menu items because I think they don't make any
 sense in a web environment. Those menu items are: Read This! and Quit Game.
 
-Forked & updated with :heart: by [ROJO 2](https://rojo2.com)
+Forked & updated with :heart: by [AzazelN28](https://github.com/azazeln28/)
