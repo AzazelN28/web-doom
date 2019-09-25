@@ -180,7 +180,18 @@
           }
 
           function frame() {
-            
+
+            previousState.buttons = currentState.buttons            
+            previousState.x = currentState.x            
+            previousState.y = currentState.y            
+            previousState.strafe = currentState.strafe            
+            previousState.look = currentState.look           
+
+            currentState.buttons = 0
+            currentState.x = 0
+            currentState.y = 0
+            currentState.strafe = 0
+            currentState.look = 0
 
             const gamepads = navigator.getGamepads()
             for (let index = 0; index < gamepads.length; index++) {
@@ -194,22 +205,22 @@
                   }
                 }
                 
-                if (gamepad.axes[0] < -0.5
-                 || gamepad.axes[0] > 0.5) {
+                if (gamepad.axes[0] < -0.1
+                 || gamepad.axes[0] > 0.1) {
                   currentState.strafe = gamepad.axes[0] < 0 ? -32767 : 32767
                 } else {
                   currentState.strafe = 0
                 }
 
-                if (gamepad.axes[1] < -0.5
-                 || gamepad.axes[1] > 0.5) {
+                if (gamepad.axes[1] < -0.1
+                 || gamepad.axes[1] > 0.1) {
                   currentState.y = gamepad.axes[1] < 0 ? -32767 : 32767
                 } else {
                   currentState.y = 0
                 }
 
-                if (gamepad.axes[2] < -0.5 
-                 || gamepad.axes[2] > 0.5) {
+                if (gamepad.axes[2] < -0.1 
+                 || gamepad.axes[2] > 0.1) {
                   currentState.x = gamepad.axes[2] < 0 ? -32767 : 32767
                 } else {
                   currentState.x = 0
@@ -217,7 +228,7 @@
               }
             }
 
-            Module._UpdateJoystick(data.buttons, data.x, data.y, data.strafe, data.look)
+            Module._UpdateJoystick(currentState.buttons, currentState.x, currentState.y, currentState.strafe, currentState.look)
 
             frameID = window.requestAnimationFrame(frame)
           }
