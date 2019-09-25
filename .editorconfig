@@ -1,6 +1,6 @@
 root = true
 
-[*.js,*.html,*.css]
+[*.js,*.html,*.css,*.c,*.h]
 charset = utf-8
 
 indent_size = 2
