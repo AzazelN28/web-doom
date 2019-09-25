@@ -150,16 +150,18 @@ void P_MovePlayer (player_t* player)
     //  if not onground.
     onground = (player->mo->z <= player->mo->floorz);
 	
-    if (cmd->forwardmove && onground)
-	P_Thrust (player, player->mo->angle, cmd->forwardmove*2048);
+    if (cmd->forwardmove && onground) {
+		P_Thrust (player, player->mo->angle, cmd->forwardmove*2048);
+	}
     
-    if (cmd->sidemove && onground)
-	P_Thrust (player, player->mo->angle-ANG90, cmd->sidemove*2048);
+    if (cmd->sidemove && onground) {
+		P_Thrust (player, player->mo->angle-ANG90, cmd->sidemove*2048);
+	}
 
     if ( (cmd->forwardmove || cmd->sidemove) 
 	 && player->mo->state == &states[S_PLAY] )
     {
-	P_SetMobjState (player->mo, S_PLAY_RUN1);
+		P_SetMobjState (player->mo, S_PLAY_RUN1);
     }
 }	
 
@@ -233,45 +235,47 @@ void P_PlayerThink (player_t* player)
 	
     // fixme: do this in the cheat code
     if (player->cheats & CF_NOCLIP)
-	player->mo->flags |= MF_NOCLIP;
+		player->mo->flags |= MF_NOCLIP;
     else
-	player->mo->flags &= ~MF_NOCLIP;
+		player->mo->flags &= ~MF_NOCLIP;
     
     // chain saw run forward
     cmd = &player->cmd;
     if (player->mo->flags & MF_JUSTATTACKED)
     {
-	cmd->angleturn = 0;
-	cmd->forwardmove = 0xc800/512;
-	cmd->sidemove = 0;
-	player->mo->flags &= ~MF_JUSTATTACKED;
+		cmd->angleturn = 0;
+		cmd->forwardmove = 0xc800/512;
+		cmd->sidemove = 0;
+		player->mo->flags &= ~MF_JUSTATTACKED;
     }
 			
 	
     if (player->playerstate == PST_DEAD)
     {
-	P_DeathThink (player);
-	return;
+		P_DeathThink (player);
+		return;
     }
     
     // Move around.
     // Reactiontime is used to prevent movement
     //  for a bit after a teleport.
     if (player->mo->reactiontime)
-	player->mo->reactiontime--;
+		player->mo->reactiontime--;
     else
-	P_MovePlayer (player);
+		P_MovePlayer (player);
     
     P_CalcHeight (player);
 
-    if (player->mo->subsector->sector->special)
-	P_PlayerInSpecialSector (player);
+    if (player->mo->subsector->sector->special) {
+		P_PlayerInSpecialSector (player);
+	}
     
     // Check for weapon change.
 
     // A special event has no other buttons.
-    if (cmd->buttons & BT_SPECIAL)
-	cmd->buttons = 0;			
+    if (cmd->buttons & BT_SPECIAL) {
+		cmd->buttons = 0;			
+	}
 		
     if (cmd->buttons & BT_CHANGE)
     {
@@ -314,11 +318,11 @@ void P_PlayerThink (player_t* player)
     // check for use
     if (cmd->buttons & BT_USE)
     {
-	if (!player->usedown)
-	{
-	    P_UseLines (player);
-	    player->usedown = true;
-	}
+		if (!player->usedown)
+		{
+			P_UseLines (player);
+			player->usedown = true;
+		}
     }
     else
 	player->usedown = false;

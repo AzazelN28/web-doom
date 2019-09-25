@@ -148,9 +148,10 @@ void D_ProcessEvents (void)
 	
     while ((ev = D_PopEvent()) != NULL)
     {
-	if (M_Responder (ev))
-	    continue;               // menu ate the event
-	G_Responder (ev);
+	    if (M_Responder (ev)) {
+	        continue; // menu ate the event
+        }
+	    G_Responder (ev);
     }
 }
 
@@ -297,36 +298,37 @@ void D_Display (void)
     else
 	wipe = false;
 
-    if (gamestate == GS_LEVEL && gametic)
-	HU_Erase();
+    if (gamestate == GS_LEVEL && gametic) {
+	    HU_Erase();
+    }
     
     // do buffered drawing
     switch (gamestate)
     {
       case GS_LEVEL:
-	if (!gametic)
+    	if (!gametic)
+	        break;
+	    if (automapactive)
+	        AM_Drawer ();
+	    if (wipe || (viewheight != SCREENHEIGHT && fullscreen))
+	        redrawsbar = true;
+	    if (inhelpscreensstate && !inhelpscreens)
+	        redrawsbar = true;              // just put away the help screen
+	    ST_Drawer (viewheight == SCREENHEIGHT, redrawsbar );
+	    fullscreen = viewheight == SCREENHEIGHT;
 	    break;
-	if (automapactive)
-	    AM_Drawer ();
-	if (wipe || (viewheight != SCREENHEIGHT && fullscreen))
-	    redrawsbar = true;
-	if (inhelpscreensstate && !inhelpscreens)
-	    redrawsbar = true;              // just put away the help screen
-	ST_Drawer (viewheight == SCREENHEIGHT, redrawsbar );
-	fullscreen = viewheight == SCREENHEIGHT;
-	break;
 
       case GS_INTERMISSION:
-	WI_Drawer ();
-	break;
+        WI_Drawer ();
+        break;
 
       case GS_FINALE:
-	F_Drawer ();
-	break;
+        F_Drawer ();
+        break;
 
       case GS_DEMOSCREEN:
-	D_PageDrawer ();
-	break;
+        D_PageDrawer ();
+        break;
     }
     
     // draw buffered stuff to screen
@@ -346,8 +348,8 @@ void D_Display (void)
     // see if the border needs to be initially drawn
     if (gamestate == GS_LEVEL && oldgamestate != GS_LEVEL)
     {
-	viewactivestate = false;        // view was not active
-	R_FillBackScreen ();    // draw the pattern into the back screen
+        viewactivestate = false;        // view was not active
+        R_FillBackScreen ();    // draw the pattern into the back screen
     }
 
     // see if the border needs to be updated to the screen
