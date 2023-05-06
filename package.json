@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/lazarv/wasm-doom#readme",
   "devDependencies": {
-    "serve": "^11.1.0"
+    "serve": "^14.2.0"
   }
 }
